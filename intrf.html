@@ -1,0 +1,70 @@
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+  <body>
+    <main id="root">
+        <p class="text-larger">
+            CSS -- Cascade StyleSheet
+        </p>
+        <p>
+            1234
+            <br>
+            <span>span element</span>
+        </p>
+        <form>
+            <input name="custom_input" placeholder="type something">
+            <input name="custom_input2" placeholder="type something">
+            <select>
+                <option>option1</option>
+                <option>option2</option>
+                <option>option3</option>
+            </select>
+            <button class="text-larger" id="myButton">Round button</button>
+            <button>Rectangle button</button>
+        </form>
+        <p class="text-larger">
+            CSS -- Cascade StyleSheet
+        </p>
+
+        <input id="dimensions" placeholder="Размерность квадратно матрицы">
+        <button id="createInputs">Create inputs</button>
+
+        <form id="matrix-form">
+            
+        </form>
+    </main>
+
+    <script>
+        const inputel = document.querySelector('#dimensions')
+        const buttonel = document.querySelector('#createInputs')
+        const formel = document.querySelector('#matrix-form')
+
+        // function functionName() {
+        //     // your code here
+        // }
+
+        // const myfunc = (...ags) => {
+        //     // your code here
+        // }
+
+        // 1 == '1' // true
+        // 1 === '1' // false
+
+        buttonel.onclick = () => {
+            const val = Number(inputel.value);
+            if (val > 0 && Math.trunc(val) === val) {
+                console.log('Зашли в условие')
+                for(let i = 0; i < val; i++) {
+                    const el = document.createElement('input');
+                    el.name = 'input' + i;
+                    formel.appendChild(el);
+                }
+            }
+        }
+    </script>
+  
+
+</body></html>
