@@ -1,47 +1,57 @@
 from  sympy import *
+import numpy as np
+from switchop import *
+s='/?A=[[123, 65], [77, 90]]&B=[[123, 144], [22, 91]]&op="Min"'
+
 
 def operat(s):
-    (a, b, op) = (s[2:].split('&'))
-    a = a.split('=')[1]
-    b = b.split('=')[1]
-    op = op.split('=')[1]
+    try:
+        s = s.replace('%20', ' ')
+        s = s.replace('%22', '"')
+        print(s)
+        (a, b, op) = (s[2:].split('&'))
+        a = a.split('=')[1]#первая матрица
+        b = b.split('=')[1]#вторая матрица
+        op = op.split('=')[1]#операция
+    #привожу матрицы к виду без скобок, для удобства чтения, но сперва считываю размерности матрицы
+        i = a.count(']') - 1
+        j = int((a.count(',') - i + 1) / i) + 1
+        m1 = np.empty((i, j))
+        a = a.replace('[', '')
+        a = ',' + a.replace(']', '') + ','
+        #ОСНОВНОЙ ЦИКЛ ПРЕОБРАЗОВАНИЯ
+        k=1
+        try:
+            for z in range(0, i):
+                for w in range(0, j):
+                    m1[z][w]=int(a.split(',')[k])
+                    m1[z][w]=int(m1[z][w])
+                    k+=1
+        except:
+            print(k +"in first")
+        i = b.count(']') - 1
+        j = int((b.count(',') - i + 1) / i) + 1
+        m2 = np.empty((i, j))
+        b=b.replace('[','')
+        b=','+ b.replace(']','')+','
+        #ОСНОВНОЙ ЦИКЛ ПРЕОБРАЗОВАНИЯ
+        k=1
+        for z in range(0, i):
+            for w in range(0, j):
+                print()
+                m2[z][w]=int(b.split(',')[k])
+                k+=1
+        M1=Matrix(m1)
+        M2=Matrix(m2)
+        op=op[1:4]
+        print(str(op))
+        try:
+            switch(M1, M2, op)
+        except:
+            print("Error")
 
-    j=a.count(']')-1#2
-    i=a.count(',')-j+1#2
-    m1=[[] * j] * i
-    a=a.replace('[','')
-    a=','+ a.replace(']','')+','
-    #ОСНОВНОЙ ЦИКЛ ПРЕОБРАЗОВАНИЯ
-    k=1
-    for z in range(0, i):
-        for w in range(0, j):
-            m1[z].append(int(a.split(',')[k]))
-            print(z,w)
-            print(m1[z][w])
-            k+=1
+    except:
+        print("Stop")
+operat(s)
 
-    print(m1)
-
-    j=b.count(']')-1#2
-    i=b.count(',')-j+1#2
-    m2=[[] * j] * i
-    b=b.replace('[','')
-    b=','+ b.replace(']','')+','
-    #ОСНОВНОЙ ЦИКЛ ПРЕОБРАЗОВАНИЯ
-    k=1
-    for z in range(0, i):
-        for w in range(0, j):
-            m2[z].append(int(b.split(',')[k]))
-            print(z,w)
-            print(m2[z][w])
-            k+=1
-
-    print(m2)
-    M1=Matrix(m1)
-    M2=Matrix(m2)
-    op=op[1:4]
-    print(str(op))
-
-    if(op =="Sum"):
-        print(M1+M2)
 

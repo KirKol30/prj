@@ -1,10 +1,10 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from  sympy import *
+from sympy import *
+from my import *
 HOST ="localhost"
 PORT = 8888
-from m import *
 
-
+a=0
 class kHTTP(BaseHTTPRequestHandler):
 
     def do_GET(self):
@@ -13,7 +13,8 @@ class kHTTP(BaseHTTPRequestHandler):
         self.end_headers()
         url = self.path
         operat(url)
-        self.wfile.write(bytes("<html><body>url</body></html>", "utf-8"))
+        if(a==0):
+            self.wfile.write(bytes("<html><body>Ramil?</body></html>", "utf-8"))
 
 server = HTTPServer((HOST, PORT), kHTTP)
 print("Server didnt die")
