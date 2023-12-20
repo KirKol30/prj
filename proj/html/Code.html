@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Awesome Page</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <h1>Размерности матрицы</h1>
+       <main id="myone">
+        <from>
+            <input id="dimensions1" placeholder="type something">
+            <input id="dimensions2" placeholder="type something">
+            <!-- опции -->
+            <select>
+                <option>sum</option>
+                <option>min</option>
+                <option>multy</option>
+                <option>T</option>
+            </select>
+            <button class="textr-larger" id="myButton">button</button>
+        </from>
+        <!--создание
+        
+         
+           -->
+        <button id="createInputs">Create inputs</button>
+        <!--Matrix-->
+        <form id="matrix-form"></form>
+        <p>
+            заполнение матрицы
+        </p>
+       </main>
+       <script>
+        const inputel1 = document.querySelector('#dimension1')
+        const inputel2 = document.querySelector('#dimension2')
+        const buttonel = document.querySelector('#createInputs')
+        const formel = document.querySelector('#matrix-from')
+        
+        buttonel.onclick = () => {
+            const val = Number(inputel1.value*inputel2.value);
+            if (val > 0 && Math.trunc(val) === val) {
+                console.log('Зашли в условие')
+                for(let i = 0; i < val; i++) {
+                    const el = document.createElement('input');
+                    el.name = 'input' + i;
+                    formel.appendChild(el);
+                }
+            }
+        }
+        </script>
+        <p>
+         moi variant
+        </p>
+    </body>
+</html>

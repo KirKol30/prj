@@ -11,10 +11,14 @@
         <p class="text-larger">
             CSS -- Cascade StyleSheet
         </p>
-        
+        <p>
+            1234
+            <br/>
+            <span>span element</span>
+        </p>
         <form>
-            <input id="dimensions1" placeholder="type something">
-            <input id="dimensions2" placeholder="type something">
+            <input name="custom_input" placeholder="type something">
+            <input name="custom_input2" placeholder="type something">
             <select>
                 <option>option1</option>
                 <option>option2</option>
@@ -26,6 +30,7 @@
             CSS -- Cascade StyleSheet
         </p>
 
+        <input id="dimensions" placeholder="Размерность квадратно матрицы">
         <button id="createInputs">Create inputs</button>
 
         <form id="matrix-form">
@@ -34,14 +39,23 @@
     </main>
 
     <script>
-        const inputel1 = document.querySelector('#dimension1')
-        const inputel2 = document.querySelector('#dimension2')
+        const inputel = document.querySelector('#dimensions')
         const buttonel = document.querySelector('#createInputs')
         const formel = document.querySelector('#matrix-form')
 
+        // function functionName() {
+        //     // your code here
+        // }
+
+        // const myfunc = (...ags) => {
+        //     // your code here
+        // }
+
+        // 1 == '1' // true
+        // 1 === '1' // false
 
         buttonel.onclick = () => {
-            const val = Number(inputel1.value*inputel2.value);
+            const val = Number(inputel.value);
             if (val > 0 && Math.trunc(val) === val) {
                 console.log('Зашли в условие')
                 for(let i = 0; i < val; i++) {
