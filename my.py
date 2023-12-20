@@ -52,6 +52,6 @@ def operat(s):
 
     except:
         print("Stop")
-operat(s)
+
 
 
